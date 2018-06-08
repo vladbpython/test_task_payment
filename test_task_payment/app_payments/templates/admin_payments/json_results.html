@@ -1,0 +1,28 @@
+{% load i18n static admin_payments %}
+{% if results %}
+<div class="results">
+<table id="result_list">
+<thead>
+<tr>
+{% for r_key in results_keys %}
+<th scope="col" class="column-{{ r_key }}">
+   <div class="text"><span>{{ r_key|capfirst }}</span></div>
+   <div class="clear"></div>
+</th>{% endfor %}
+</tr>
+</thead>
+<tbody>
+{% for result in results %}
+<tr class="{% cycle 'row1' 'row2' %}">
+    {% for r_key in results_keys %}
+        {% parse_data result r_key as data %}
+        <td class="field-{{data}}">{{data}}</td>
+    {% endfor %}
+
+
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endif %}
